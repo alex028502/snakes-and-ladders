@@ -30,6 +30,8 @@ jobs:
       run: npm run format
     - name: unit test
       run: npm test
+    - name: compile for test and release
+      run: npm run compile
     - name: take a look at hosts file
       run: cat /etc/hosts
     - name: selenium test
