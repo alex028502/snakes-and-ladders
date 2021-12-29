@@ -2,12 +2,21 @@ import java.util.Arrays;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Alert;
 
 public class Test {
    public static void main(String []args) throws InterruptedException {
-     WebDriver driver = new ChromeDriver();
+     WebDriver driver;
+     // this is how the js one works by default
+     String remote = System.getenv("SELENIUM_REMOTE_URL");
+     if (remote) {
+       driver = new RemoteWebDriver(new URL(remote));
+     } else {
+       driver = new ChromeDriver();
+     }
+
      try {
        Thread.sleep(1000);
        String url = args[0];
