@@ -22,6 +22,8 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
+    - name: list available fonts
+      run: convert -list font
     - name: install more stuff
       run: sudo apt-get update && sudo apt-get install bison flex imagemagick
     - name: install js depedencies
