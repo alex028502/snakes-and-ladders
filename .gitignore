@@ -1,0 +1,7 @@
+/.shadow-cljs
+/node_modules
+/resources/public/js
+/src/tmp
+/resources/public/index.js*
+/out
+/selenium/*.class
