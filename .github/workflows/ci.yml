@@ -22,8 +22,6 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
-    - name: take a look a hosts file
-      run: cat /etc/hosts
     - name: install more stuff
       run: sudo apt-get update && sudo apt-get install bison flex imagemagick
     - name: install js depedencies
@@ -32,5 +30,7 @@ jobs:
       run: npm run format
     - name: unit test
       run: npm test
+    - name: take a look at hosts file
+      run: cat /etc/hosts
     - name: selenium test
-      run: SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub ./test.sh
+      run: SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub TEST_DOMAIN=$(cat /etc/hosts | grep internal | head -n1 | awk '{ print $1 }') ./test.sh

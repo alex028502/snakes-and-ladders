@@ -17,12 +17,9 @@ function clean-up {
 }
 trap clean-up EXIT
 
-# the docker network on github actions seems to make all mapped ports available
-# on localhost, just like running individual containers locally - so no need
-# for this I guess
-# if [[ "$TEST_DOMAIN" == "" ]]
-# then
-#   TEST_DOMAIN=localhost
-# fi
+if [[ "$TEST_DOMAIN" == "" ]]
+then
+  TEST_DOMAIN=localhost
+fi
 
-java -ea Test http://localhost:8080
+java -ea Test http://$TEST_DOMAIN:8080
