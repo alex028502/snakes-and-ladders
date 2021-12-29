@@ -26,6 +26,8 @@ jobs:
     #   run: convert -list font
     - name: install more stuff
       run: sudo apt-get update && sudo apt-get install bison flex imagemagick
+    - name: install some stuff so gcc's -ll option works maybe
+      run: sudo apt-get install flex-devel bison-devel
     - name: install js depedencies
       run: npm ci
     - name: format check
