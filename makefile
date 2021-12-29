@@ -8,13 +8,13 @@ MAP_PATH=$(TMP)/$(MAP_NAME)
 SM=$(TRANSPILER_DIR)/sm.js
 PUBLIC_DIR=resources/public
 BUNDLE_PATH=$(PUBLIC_DIR)/index.js
-
+F=liberation
 
 .PHONY: $(TRANSPILER)
 
 default: $(PUBLIC_DIR)/favicon.ico $(BUNDLE_PATH) $(MAP_PATH)
 $(PUBLIC_DIR)/favicon.ico: makefile
-	convert -size 16x16 -background white -pointsize 12 label:1 $@
+	convert -size 16x16 -background white -pointsize 12 -font $F label:1 $@
 $(BUNDLE_PATH): src/index.js $(MAP_PATH) $(TARGET_PATH)
 	node_modules/.bin/esbuild --bundle $< --outfile=$@ --sourcemap
 $(MAP_PATH): $(SM) $(TARGET_PATH) $(SOURCE_PATH)
