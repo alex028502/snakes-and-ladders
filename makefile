@@ -8,7 +8,7 @@ MAP_PATH=$(TMP)/$(MAP_NAME)
 SM=$(TRANSPILER_DIR)/sm.js
 PUBLIC_DIR=resources/public
 BUNDLE_PATH=$(PUBLIC_DIR)/index.js
-F=liberation
+F=Liberation-Mono
 
 .PHONY: $(TRANSPILER)
 
