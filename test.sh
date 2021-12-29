@@ -21,5 +21,7 @@ if [[ "$TEST_DOMAIN" == "" ]]
 then
   TEST_DOMAIN=localhost
 fi
+sleep 1
+curl -f -v http://$TEST_DOMAIN:8080/index.html
 
 java -ea Test http://$TEST_DOMAIN:8080
