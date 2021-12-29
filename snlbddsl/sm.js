@@ -21,7 +21,6 @@ const lineProgress = {};
 for (const [idx, generatedLine] of generatedLines.entries()) {
   const mapping = generatedLine.match(/\/\/\s(.*),(.*)$/);
   if (mapping) {
-    console.error('found', mapping[1], mapping[2], 'on', idx + 1);
     map.addMapping({
       generated: {
         line: idx + 1,
