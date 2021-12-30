@@ -17,7 +17,7 @@
   ;;           :exports-fn app.core/play
   ;;           :modules {:main {:entries [app.core app.convert]}}}
   :app {:target :browser
-        :output-dir "resources/public/engine"
+        :output-dir "resources/public/js"
         :modules {:main {:entries [engine.core engine.convert]}}
         :devtools {:preloads [devtools.preload]
                    :http-root "resources/public"
