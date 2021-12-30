@@ -1,10 +1,5 @@
 const board = require('./tmp/board');
-
-function* die() {
-  while (true) {
-    yield Math.floor(Math.random() * 6) + 1;
-  }
-}
+const die = require('./die');
 
 document.getElementById('play-button').onclick = function() {
   const players = document.getElementById('players').value;

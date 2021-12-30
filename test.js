@@ -3,6 +3,8 @@ const assert = require('assert');
 const [shortcuts, goal] = require('./src/tmp/board');
 const {convert, core} = require('./resources/public/engine/main.js').engine;
 
+const die = require('./src/die');
+
 assert.equal(goal, 100);
 
 // this is mainly here to test the board generator
@@ -18,7 +20,7 @@ assert.equal(testDie.next().value, 1);
 assert.equal(testDie.next().value, 2);
 assert.equal(testDie.next().value, 3);
 // thanks https://stackoverflow.com/q/54789406
-const checkList = Object.fromEntries(legalRolls.map((k) => [k, 0]));
+const checkList = initCheckList(legalRolls);
 assert.equal(lowestValue(checkList), 0);
 for (let n = 1; true; n++) {
   assert.equal(testDie.next().value, 1);
@@ -36,6 +38,23 @@ for (let n = 1; true; n++) {
 // a number other than 1 for the second player, we can trust that all other
 // tests will eventually end, and if they go on forever, treat that like any
 // other infinite loop created by accident, and not put a special timeout
+
+
+// while we are doing this stuff, let's test the real die
+// this test doesn't require any compilation, so doesn't have to be here
+// but it is nice to compare the two dice and the way they are tested
+// to show that they are compatible
+const realDie = die(); // this could be used in other tests theoretically
+for (const cl = initCheckList(legalRolls); !lowestValue(cl);) {
+  const roll = realDie.next().value;
+  assert(legalRolls.indexOf(roll) + 1, roll);
+  cl[roll]++;
+  assert(new Date() - startTime < 10000, checkList);
+}
+
+function initCheckList(items) {
+  return Object.fromEntries(items.map((k) => [k, 0]));
+}
 
 function lowestValue(o) {
   return Math.min.apply(null, Object.values(o));
