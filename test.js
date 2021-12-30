@@ -9,20 +9,27 @@ assert.equal(goal, 100);
 // by running everything as it is run in the webpage, except with a loaded die
 // and predicting the outcome
 
+const legalRolls = [1, 2, 3, 4, 5, 6];
+
 // first test the loaded die
 const startTime = new Date();
 const testDie = loadedDie(1, 2, 3);
 assert.equal(testDie.next().value, 1);
 assert.equal(testDie.next().value, 2);
 assert.equal(testDie.next().value, 3);
+// thanks https://stackoverflow.com/q/54789406
+const checkList = Object.fromEntries(legalRolls.map((k) => [k, 0]));
+assert.equal(lowestValue(checkList), 0);
 for (let n = 1; true; n++) {
   assert.equal(testDie.next().value, 1);
   const fairRoll = testDie.next().value;
-  assert([1, 2, 3, 4, 5, 6].indexOf(fairRoll) + 1, fairRoll);
-  if (fairRoll !== 1 && n > 3) {
+  assert(legalRolls.indexOf(fairRoll) + 1, fairRoll);
+  checkList[fairRoll]++;
+  // make sure we get every roll once
+  if (lowestValue(checkList)) {
     break;
   }
-  assert(new Date() - startTime < 10000);
+  assert(new Date() - startTime < 10000, checkList);
   assert.equal(testDie.next().value, 1);
 }
 // now that we have determined that the die itself will eventually produce
@@ -30,6 +37,9 @@ for (let n = 1; true; n++) {
 // tests will eventually end, and if they go on forever, treat that like any
 // other infinite loop created by accident, and not put a special timeout
 
+function lowestValue(o) {
+  return Math.min.apply(null, Object.values(o));
+}
 
 // roll to see who goes first
 assert.equal(core.play(
@@ -112,6 +122,35 @@ assert.equal(core.play(
     convert.getclojure(['typescript', 'clojurescript', 'javascript']),
 ), 'javascript wins!');
 
+// this is ladders all the way up - so it should be anybody who is playing fair
+const winningTicket = [
+  4, // 4 -> 14
+  6, // 20
+  6, // 26,
+  2, // 28 -> 84
+  6, // 89
+  6, // 94
+  6, // 100
+];
+
+const riggedRolls = [].concat.apply([], winningTicket.map(function(r) {
+  return [rnd(), r];
+})).concat(rnd()); // the loser needs one move more than the winner
+
+assert.equal(core.play(
+    convert.getclojure([1, 2].concat(riggedRolls)),
+    goal,
+    convert.getclojure(shortcuts),
+    convert.getclojure(['clojurescript', 'javascript']),
+), 'clojurescript wins!');
+
+assert.equal(core.play(
+    convert.getclojure([6, 2].concat(riggedRolls)),
+    goal,
+    convert.getclojure(shortcuts),
+    convert.getclojure(['clojurescript', 'javascript']),
+), 'javascript wins!');
+
 // only the player that goes second gets a fair deal.  Everybody else always
 // rolls a 1 which, if you look at the board, will get you stuck this loop:
 // 28 -> 84... 87 -> 24
@@ -123,9 +162,13 @@ function* loadedDie() {
   }
   for (let i = 0; true; i++) {
     if (i % initialRolls.length === 1) {
-      yield Math.floor(Math.random() * 6) + 1;
+      yield rnd();
     } else {
       yield 1;
     }
   }
+}
+
+function rnd() {
+  return Math.floor(Math.random() * 6) + 1;
 }

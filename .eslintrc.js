@@ -11,5 +11,6 @@ module.exports = {
   'rules': {
     'require-jsdoc': 0,
     'prefer-rest-params': 0,
+    'prefer-spread': 0,
   },
 };

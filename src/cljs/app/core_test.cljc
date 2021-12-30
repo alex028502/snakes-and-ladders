@@ -54,10 +54,36 @@
 ;; remember to make it clear to the end user that if there is a tie for
 ;; highest, everybody gets to roll again, not just the users in the tie:
 ;; also notice that vectors get converted to lists along the way.
-(deftest roll-to-see-who-goes-first
+(deftest see-who-goes-first
   (let [round1 [2 4 4]
         round2 [1 2 3]
         leftover (list 7 8 9 1)]
     (is (= (app.core/roll-to-see-who-goes-first ["A" "B" "C"]
                                                 (concat round1 round2 leftover))
            (list (list "C" "A" "B") leftover)))))
+
+;; before I added this feature, it threw an error in clojure, but I don't know
+;; how that bubbles up to node and the browser, so better to just have nice
+;; error message - this mainly happens when I write a test without enough test
+;; rolls - maybe out of cards would be a better analogy here - like I could
+;; imagine drawing cards with numbers on them
+(deftest out-of-rolls
+  (is (= (app.core/play [3 1 2 2 2 2]
+                        30
+                        {"3" 1 "5" 10}
+                        (list "clojure" "clojurescript"))
+         "inconclusive")))
+
+(deftest out-of-rolls-before-starting
+  (is (= (app.core/play [3 3 2 2 6 6]
+                        30
+                        {"3" 1 "5" 10}
+                        (list "clojure" "clojurescript"))
+         "inconclusive")))
+
+(deftest out-of-rolls-before-starting-mismatch
+  (is (= (app.core/play [3 3 2 2 6]
+                        30
+                        {"3" 1 "5" 10}
+                        (list "clojure" "clojurescript"))
+         "inconclusive")))
