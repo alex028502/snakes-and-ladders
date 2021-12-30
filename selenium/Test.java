@@ -2,6 +2,13 @@ import java.util.Arrays;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+// thanks https://mkyong.com/Java/how-to-send-http-request-getpost-in-Java/
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.conn.HttpHostConnectException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,21 +18,29 @@ import org.openqa.selenium.Alert;
 
 
 public class Test {
-  public static void main(String []args) throws InterruptedException, MalformedURLException {
+  public static void main(String []args) throws Exception {
+    String url = args[0];
+    System.out.println("testing: " + url);
+    assert checkStatus(url);
+
     WebDriver driver;
     // this is how the js one works by default
     String remote = System.getenv("SELENIUM_REMOTE_URL");
+    ChromeOptions chromeOptions = new ChromeOptions();
+
+    // for localhost this doesn't matter but on CI it does
+    // but I can test it locally by running the tests with an ip address
+    // TEST_DOMAIN=192.168.11.11 ./test.sh
+    String allowSW = "--unsafely-treat-insecure-origin-as-secure=" + url;
+    chromeOptions.addArguments(allowSW);
     if (remote == null) {
-      driver = new ChromeDriver();
+      driver = new ChromeDriver(chromeOptions);
     } else {
-      ChromeOptions chromeOptions = new ChromeOptions();
       driver = new RemoteWebDriver(new URL(remote), chromeOptions);
     }
 
     try {
       Thread.sleep(1000);
-      String url = args[0];
-      System.out.println("testing: " + url);
       driver.get(url);
       Thread.sleep(1000);
       pressPlay(driver);
@@ -60,10 +75,28 @@ public class Test {
       pressPlay(driver);
       Thread.sleep(300);
       expectWinnerInList(driver, names2);
+      // server should be off by now: (there is a timeout in wrapper script)
+      assert ! checkStatus(url);
+      // test service worker caching:
+      driver.navigate().refresh();
+      pressPlay(driver);
+      Thread.sleep(300);
+      expectWinnerInList(driver, names2);
       System.out.println("Success!");
     } finally {
       Thread.sleep(3000);
       driver.quit();
+    }
+  }
+
+  private static boolean checkStatus(String url) throws Exception {
+    try {
+      CloseableHttpClient httpClient = HttpClients.createDefault();
+      HttpGet request = new HttpGet(url);
+      httpClient.execute(request);
+      return true;
+    } catch (HttpHostConnectException e) {
+      return false;
     }
   }
 

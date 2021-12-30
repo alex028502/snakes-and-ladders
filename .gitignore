@@ -8,3 +8,6 @@
 /resources/public/favicon.ico
 /.nrepl-port
 /resources/public/engine
+/resources/public/service-worker.js*
+/resources/public/workbox*.js*
+/resources/public/*png

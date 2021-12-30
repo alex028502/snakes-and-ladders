@@ -10,11 +10,14 @@
     "http-server": "^14.0.0",
     "shadow-cljs": "^2.16.9",
     "source-map": "^0.7.3",
-    "source-map-loader": "^3.0.0"
+    "source-map-loader": "^3.0.0",
+    "workbox-cli": "^6.4.2"
   },
   "scripts": {
-    "watch": "make && shadow-cljs watch app",
-    "compile": "make && npm run shadow-compile",
+    "watch": "npm run sw-placeholder && make && shadow-cljs watch app",
+    "sw-placeholder": "echo '//placeholder' >> resources/public/service-worker.js",
+    "sw": "workbox generateSW workbox-config.js",
+    "build": "make && npm run shadow-compile && npm run sw",
     "shadow-compile": "p=resources/public/js && rm -rf $p && shadow-cljs release app && ls $p",
     "nrepl": "shadow-cljs clj-run nrepl.cmdline -- --middleware \"[cider.nrepl/cider-middleware]\"",
     "test": "npm run test-core-with-jvm && npm run test-core-with-node",
