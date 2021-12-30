@@ -13,7 +13,7 @@ document.getElementById('reset-button').onclick = function() {
   document.getElementById('players').value = '';
   // the above doesn't count as input I guess!
   localStorage.setItem('players', '');
-}
+};
 
 document.getElementById('play-button').onclick = function() {
   const players = document.getElementById('players').value;
