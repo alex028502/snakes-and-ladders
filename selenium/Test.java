@@ -30,26 +30,33 @@ public class Test {
       Thread.sleep(1000);
       driver.findElement(By.id("play-button")).click();
       Thread.sleep(1000);
-      Alert alert = driver.switchTo().alert();
-      assert alert.getText().equals("no players"): alert.getText();
-      Thread.sleep(500);
-      alert.accept();
+      expectNoPlayersMessage(driver);
       String[] names = new String[] {"Java", "Clojure"};
       String entry = String.join(" \n\n ", names);
       driver.findElement(By.id("players")).sendKeys(entry);
       Thread.sleep(500);
       driver.findElement(By.id("play-button")).click();
       Thread.sleep(500);
-      alert = driver.switchTo().alert();
       Thread.sleep(500);
-      String winner = alert.getText().replace(" wins!", "");
-      assert Arrays.asList(names).contains(winner): alert.getText();
-      alert.accept();
+      expectWinnerInList(driver, names);
       Thread.sleep(500);
       System.out.println("Success!");
     } finally {
       Thread.sleep(3000);
       driver.quit();
     }
+  }
+
+  private static void expectNoPlayersMessage(WebDriver driver) {
+      Alert alert = driver.switchTo().alert();
+      assert alert.getText().equals("no players"): alert.getText();
+      alert.accept();
+  }
+
+  private static void expectWinnerInList(WebDriver driver, String[] names) {
+      Alert alert = driver.switchTo().alert();
+      String winner = alert.getText().replace(" wins!", "");
+      assert Arrays.asList(names).contains(winner): alert.getText();
+      alert.accept();
   }
 }
