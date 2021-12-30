@@ -1,0 +1,42 @@
+name: Snakes and Ladders
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    services:
+      chrome:
+        image: selenium/standalone-chrome:96.0
+        ports:
+          - 4444:4444
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    # - name: list available fonts
+    #   run: convert -list font
+    - name: install more stuff
+      run: sudo apt-get update && sudo apt-get install bison flex imagemagick libfl-dev
+    # - name: install some stuff so gcc's -ll option works maybe
+    #   run: sudo apt-get install flex-devel bison-devel
+    - name: install js depedencies
+      run: npm ci
+    - name: format check
+      run: npm run format
+    - name: unit test
+      run: npm test
+    - name: compile for test and release
+      run: npm run compile
+    - name: take a look at hosts file
+      run: cat /etc/hosts
+    - name: selenium test
+      run: SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub TEST_DOMAIN=$(cat /etc/hosts | grep internal | head -n1 | awk '{ print $1 }') ./test.sh

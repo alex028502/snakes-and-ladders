@@ -1,0 +1,23 @@
+{
+  "name": "snakes-and-ladders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "esbuild": "^0.14.9",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "http-server": "^14.0.0",
+    "shadow-cljs": "^2.16.9",
+    "source-map": "^0.7.3",
+    "source-map-loader": "^3.0.0"
+  },
+  "scripts": {
+    "watch": "make && shadow-cljs watch app",
+    "compile": "make && shadow-cljs release app",
+    "test": "shadow-cljs compile test",
+    "format": "npm run format-cljs -- check",
+    "format-cljs": "shadow-cljs run cljfmt.main --remove-multiple-non-indenting-spaces",
+    "format-js": "eslint .*.js src/*.js snlbddsl/*.js"
+  }
+}

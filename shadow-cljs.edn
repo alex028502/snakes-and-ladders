@@ -1,0 +1,20 @@
+{:source-paths ["src/cljs"]
+ :nrepl {:port 9000}
+ :dependencies [[cider/cider-nrepl "0.21.0"]
+                [cljfmt "0.8.0"]
+                [org.seleniumhq.selenium/selenium-java "3.141.59"]
+                [binaryage/devtools "1.0.2"]]
+ :builds
+ {:test {:target :node-test
+         :output-to "out/node-tests.js"
+         :ns-regexp "-test$"
+         :autorun true}
+  :app {:target :browser
+        :output-dir "resources/public/js"
+        :modules {:main {:entries [app.core app.convert]}}
+        :devtools {:preloads [devtools.preload]
+                   :http-root "resources/public"
+                   :http-port 3000}
+        :compiler-options {:source-map true}}}}
+
+;; thanks https://www.youtube.com/watch?v=p61lhOvQg2Q
