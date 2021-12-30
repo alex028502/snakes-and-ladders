@@ -28,23 +28,47 @@ public class Test {
       System.out.println("testing: " + url);
       driver.get(url);
       Thread.sleep(1000);
-      driver.findElement(By.id("play-button")).click();
+      pressPlay(driver);
       Thread.sleep(1000);
       expectNoPlayersMessage(driver);
       String[] names = new String[] {"Java", "Clojure"};
       String entry = String.join(" \n\n ", names);
       driver.findElement(By.id("players")).sendKeys(entry);
       Thread.sleep(500);
-      driver.findElement(By.id("play-button")).click();
-      Thread.sleep(500);
+      driver.navigate().refresh();
+      pressPlay(driver);
       Thread.sleep(500);
       expectWinnerInList(driver, names);
       Thread.sleep(500);
+      driver.findElement(By.id("reset-button")).click();
+      pressPlay(driver);
+      expectNoPlayersMessage(driver);
+      Thread.sleep(500);
+      driver.navigate().refresh();
+      pressPlay(driver);
+      expectNoPlayersMessage(driver);
+      String[] names2 = new String[] {"100", "200", "300"};
+      driver.findElement(By.id("players")).sendKeys(String.join("\n", names2));
+      pressPlay(driver);
+      Thread.sleep(300);
+      expectWinnerInList(driver, names2);
+      pressPlay(driver);
+      Thread.sleep(300);
+      expectWinnerInList(driver, names2);
+      driver.navigate().refresh();
+      Thread.sleep(300);
+      pressPlay(driver);
+      Thread.sleep(300);
+      expectWinnerInList(driver, names2);
       System.out.println("Success!");
     } finally {
       Thread.sleep(3000);
       driver.quit();
     }
+  }
+
+  private static void pressPlay(WebDriver driver) {
+    driver.findElement(By.id("play-button")).click();
   }
 
   private static void expectNoPlayersMessage(WebDriver driver) {
