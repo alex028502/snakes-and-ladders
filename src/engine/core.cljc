@@ -1,4 +1,4 @@
-(ns app.core)
+(ns engine.core)
 
 ; thanks https://stackoverflow.com/a/8087667
 (defn index-of [item coll]

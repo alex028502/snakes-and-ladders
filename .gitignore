@@ -7,3 +7,4 @@
 /selenium/*.class
 /resources/public/favicon.ico
 /.nrepl-port
+/resources/public/engine

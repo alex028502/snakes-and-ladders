@@ -1,4 +1,4 @@
-(ns app.convert)
+(ns engine.convert)
 
 (defn ^:export getsequence [die]
   (repeatedly (fn [] (. (.next die) -value))))

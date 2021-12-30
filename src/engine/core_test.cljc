@@ -1,6 +1,6 @@
-(ns app.core-test
+(ns engine.core-test
   (:require [clojure.test :refer (deftest is)]
-            [app.core]))
+            [engine.core]))
 
 (deftest demo
   (is (= 2 2)))
@@ -15,25 +15,25 @@
 ;; (.println (System/out) "---- testing with jvm ----")
 
 (deftest roll-to-see-who-goes-first
-  (is (= (app.core/play [1 3 6 6 6 6] 12 {} (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [1 3 6 6 6 6] 12 {} (list "clojure" "clojurescript"))
          "clojurescript wins!")))
 
 (deftest higher-rolls
-  (is (= (app.core/play [1 3 5 6 5 6] 12 {} (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [1 3 5 6 5 6] 12 {} (list "clojure" "clojurescript"))
          "clojure wins!")))
 
 (deftest leader-hits-snake
-  (is (= (app.core/play [3 1 6 5 5 5 5 5]
-                        12
-                        {"6" 1}
-                        (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [3 1 6 5 5 5 5 5]
+                           12
+                           {"6" 1}
+                           (list "clojure" "clojurescript"))
          "clojurescript wins!")))
 
 (deftest loser-hits-ladder
-  (is (= (app.core/play [3 1 6 5 5 5 5 5]
-                        12
-                        {"3" 1 "5" 10}
-                        (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [3 1 6 5 5 5 5 5]
+                           12
+                           {"3" 1 "5" 10}
+                           (list "clojure" "clojurescript"))
          "clojurescript wins!")))
 
 ;; this one was failing in the node test - so zeroing in on the problem by
@@ -46,7 +46,7 @@
              4 ;; cljs goes to 4
              5 ;; js goes to 6
              4]] ;; cljs goes to 8
-    (is (= (app.core/play die 8 {"5" 1} (list "javascript" "clojurescript"))
+    (is (= (engine.core/play die 8 {"5" 1} (list "javascript" "clojurescript"))
            "clojurescript wins!"))))
 
 ;; I thought there might be a problem with roll to see who goes first but it
@@ -58,8 +58,10 @@
   (let [round1 [2 4 4]
         round2 [1 2 3]
         leftover (list 7 8 9 1)]
-    (is (= (app.core/roll-to-see-who-goes-first ["A" "B" "C"]
-                                                (concat round1 round2 leftover))
+    (is (= (engine.core/roll-to-see-who-goes-first ["A" "B" "C"]
+                                                   (concat round1
+                                                           round2
+                                                           leftover))
            (list (list "C" "A" "B") leftover)))))
 
 ;; before I added this feature, it threw an error in clojure, but I don't know
@@ -68,22 +70,22 @@
 ;; rolls - maybe out of cards would be a better analogy here - like I could
 ;; imagine drawing cards with numbers on them
 (deftest out-of-rolls
-  (is (= (app.core/play [3 1 2 2 2 2]
-                        30
-                        {"3" 1 "5" 10}
-                        (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [3 1 2 2 2 2]
+                           30
+                           {"3" 1 "5" 10}
+                           (list "clojure" "clojurescript"))
          "inconclusive")))
 
 (deftest out-of-rolls-before-starting
-  (is (= (app.core/play [3 3 2 2 6 6]
-                        30
-                        {"3" 1 "5" 10}
-                        (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [3 3 2 2 6 6]
+                           30
+                           {"3" 1 "5" 10}
+                           (list "clojure" "clojurescript"))
          "inconclusive")))
 
 (deftest out-of-rolls-before-starting-mismatch
-  (is (= (app.core/play [3 3 2 2 6]
-                        30
-                        {"3" 1 "5" 10}
-                        (list "clojure" "clojurescript"))
+  (is (= (engine.core/play [3 3 2 2 6]
+                           30
+                           {"3" 1 "5" 10}
+                           (list "clojure" "clojurescript"))
          "inconclusive")))

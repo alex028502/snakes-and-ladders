@@ -14,11 +14,11 @@ document.getElementById('play-button').onclick = function() {
     return x;
   });
   alert(
-      app.core.play(
-          app.convert.getsequence(die()),
+      engine.core.play(
+          engine.convert.getsequence(die()),
           board[1],
-          app.convert.getclojure(board[0]),
-          app.convert.getclojure(names),
+          engine.convert.getclojure(board[0]),
+          engine.convert.getclojure(names),
       ),
   );
 };

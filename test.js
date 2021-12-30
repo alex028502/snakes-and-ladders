@@ -1,7 +1,7 @@
 const assert = require('assert');
 
 const [shortcuts, goal] = require('./src/tmp/board');
-const {convert, core} = require('./resources/public/js/main.js').app;
+const {convert, core} = require('./resources/public/engine/main.js').engine;
 
 assert.equal(goal, 100);
 
