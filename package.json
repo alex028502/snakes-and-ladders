@@ -15,9 +15,12 @@
   "scripts": {
     "watch": "make && shadow-cljs watch app",
     "compile": "make && shadow-cljs release app",
-    "test": "shadow-cljs compile test",
+    "nrepl": "shadow-cljs clj-run nrepl.cmdline -- --middleware \"[cider.nrepl/cider-middleware]\"",
+    "test": "npm run test-core-with-jvm && npm run test-core-with-node",
+    "test-core-with-node": "shadow-cljs compile test",
+    "test-core-with-jvm": "shadow-cljs clj-run kaocha.runner",
     "format": "npm run format-cljs -- check && npm run format-js",
     "format-cljs": "shadow-cljs run cljfmt.main --remove-multiple-non-indenting-spaces",
-    "format-js": "eslint .*.js src/*.js snlbddsl/*.js"
+    "format-js": "eslint .*.js *.js src/*.js snlbddsl/*.js"
   }
 }

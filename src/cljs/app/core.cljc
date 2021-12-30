@@ -39,3 +39,4 @@
   (if (or (not names) (= (count names) 0))
     "please list some players"
     (apply main-game goal shortcuts (roll-to-see-who-goes-first names die))))
+
