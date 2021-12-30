@@ -1,4 +1,4 @@
-const board = require('./tmp/board.js');
+const board = require('./tmp/board');
 
 function* die() {
   while (true) {
