@@ -12,9 +12,13 @@ F=Liberation-Mono
 
 .PHONY: $(TRANSPILER)
 
-default: $(PUBLIC_DIR)/favicon.ico $(BUNDLE_PATH) $(MAP_PATH)
+default: $(PUBLIC_DIR)/favicon.ico $(BUNDLE_PATH) $(MAP_PATH) $(PUBLIC_DIR)/192.png $(PUBLIC_DIR)/512.png
 $(PUBLIC_DIR)/favicon.ico: makefile
 	convert -size 16x16 -background white -pointsize 12 -font $F label:1 $@
+$(PUBLIC_DIR)/192.png: $(PUBLIC_DIR)/512.png makefile
+	convert $< -resize 192x192 $@
+$(PUBLIC_DIR)/512.png: makefile
+	convert -size 512x512 -background white -pointsize 200 -font $F label:1 $@
 $(BUNDLE_PATH): src/index.js $(MAP_PATH) $(TARGET_PATH)
 	node_modules/.bin/esbuild --bundle $< --outfile=$@ --sourcemap
 $(MAP_PATH): $(SM) $(TARGET_PATH) $(SOURCE_PATH)

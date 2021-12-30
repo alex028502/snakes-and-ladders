@@ -3,6 +3,7 @@
  :dependencies [[cider/cider-nrepl "0.27.4"]
                 [nrepl/nrepl "0.9.0"]
                 [cljfmt "0.8.0"]
+                [org.apache.httpcomponents/httpclient "4.5.13"]
                 [lambdaisland/kaocha "1.60.972"]
                 [org.seleniumhq.selenium/selenium-java "3.141.59"]
                 [binaryage/devtools "1.0.2"]]

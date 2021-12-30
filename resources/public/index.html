@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Snakes and Ladders</title>
     <script src="./js/main.js"></script>
+    <script>
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    </script>
   </head>
   <body>
     <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Cnl03.jpg" /><br />
@@ -16,4 +21,3 @@
     <script src="./index.js"></script>
   </body>
 </html>
-

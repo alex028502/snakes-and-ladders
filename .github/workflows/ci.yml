@@ -35,7 +35,7 @@ jobs:
     - name: unit test
       run: npm test
     - name: compile for test and release
-      run: npm run compile
+      run: npm run build
     - name: run some times that require compilation
       run: node test.js
     - name: take a look at hosts file
