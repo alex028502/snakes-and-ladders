@@ -6,7 +6,7 @@ set -e
 # before telling us
 export CLASSPATH="$(node_modules/.bin/shadow-cljs classpath)"
 
-javac selenium/Test.java
+make -C selenium
 
 export CLASSPATH="$PWD/selenium:$CLASSPATH"
 
