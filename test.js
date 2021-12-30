@@ -143,13 +143,10 @@ assert.equal(core.play(
 
 // this is ladders all the way up - so it should be anybody who is playing fair
 const winningTicket = [
-  4, // 4 -> 14
-  6, // 20
-  6, // 26,
-  2, // 28 -> 84
-  6, // 89
-  6, // 94
-  6, // 100
+  5, // 5 -> 15
+  4, // 19 -> 60
+  3, // 63 -> 99
+  1, // 100
 ];
 
 const riggedRolls = [].concat.apply([], winningTicket.map(function(r) {
