@@ -16,7 +16,7 @@
     "watch": "make && shadow-cljs watch app",
     "compile": "make && shadow-cljs release app",
     "test": "shadow-cljs compile test",
-    "format": "npm run format-cljs -- check",
+    "format": "npm run format-cljs -- check && npm run format-js",
     "format-cljs": "shadow-cljs run cljfmt.main --remove-multiple-non-indenting-spaces",
     "format-js": "eslint .*.js src/*.js snlbddsl/*.js"
   }
