@@ -49,7 +49,7 @@ public class Test {
       String[] names = new String[] {"Java", "Clojure"};
       String entry = String.join(" \n\n ", names);
       driver.findElement(By.id("players")).sendKeys(entry);
-      Thread.sleep(500);
+      Thread.sleep(3000);
       driver.navigate().refresh();
       pressPlay(driver);
       Thread.sleep(500);
