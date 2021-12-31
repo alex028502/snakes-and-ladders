@@ -21,7 +21,7 @@
   (loop [positions (take (count names) (repeat 0)) n 0 rolls die]
     (let [winners (map last (filter (fn [pos-name] (>= (first pos-name) goal))
                                     (map list positions names)))]
-      (cond (> (count winners) 0) (str (first winners) " wins!")
+      (cond (> (count winners) 0) (first winners)
             (not (first rolls)) "inconclusive"
             :else (recur (game-turn n (first rolls) shortcuts positions)
                          (+ n 1)
@@ -45,6 +45,6 @@
 
 (defn ^:export play [die goal shortcuts names]
   (if (= (count names) 0)
-    "no players"
+    ""
     (apply main-game goal shortcuts (roll-to-see-who-goes-first names die))))
 
