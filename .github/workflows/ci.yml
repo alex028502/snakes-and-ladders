@@ -42,3 +42,7 @@ jobs:
       run: cat /etc/hosts
     - name: selenium test
       run: SELENIUM_REMOTE_URL=http://localhost:4444/wd/hub TEST_DOMAIN=$(cat /etc/hosts | grep internal | head -n1 | awk '{ print $1 }') ./test.sh
+    - name: publish
+      uses: crazy-max/ghaction-github-pages@v2.5.0
+      with:
+        build_dir: resources/public
