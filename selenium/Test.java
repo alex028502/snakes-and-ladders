@@ -111,9 +111,12 @@ public class Test {
   }
 
   private static void expectWinnerInList(WebDriver driver, String[] names) {
+    String winnerPhrase = " wins!";
     Alert alert = driver.switchTo().alert();
-    String winner = alert.getText().replace(" wins!", "");
+    assert alert.getText().contains("winnerPhrase");
+    String winner = alert.getText().replace(winnerPhrase, "");
     assert Arrays.asList(names).contains(winner): alert.getText();
+    assert alert.getText() == winner + winnerPhrase: alert.getText();
     alert.accept();
   }
 }
