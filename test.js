@@ -66,14 +66,14 @@ assert.equal(core.play(
     5,
     convert.getclojure({}),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'clojurescript wins!');
+), 'clojurescript');
 
 assert.equal(core.play(
     convert.getclojure([3, 2, 2, 2, 2, 2, 2]),
     5,
     convert.getclojure({}),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'javascript wins!');
+), 'javascript');
 
 // second player gets a great roll
 assert.equal(core.play(
@@ -81,7 +81,7 @@ assert.equal(core.play(
     5,
     convert.getclojure({}),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'clojurescript wins!');
+), 'clojurescript');
 
 // winning player hits a snake
 // there is an almost identical test in the clojure unit tests so that if this
@@ -91,7 +91,7 @@ assert.equal(core.play(
     8,
     convert.getclojure({5: 1}),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'clojurescript wins!');
+), 'clojurescript');
 
 // debugging hint - replace core.play with play to be able to set a breakpoint
 // right where you want it in the node debugger
@@ -107,21 +107,21 @@ assert.equal(core.play(
     20,
     convert.getclojure({3: 1}),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'javascript wins!');
+), 'javascript');
 
 assert.equal(core.play(
     convert.getsequence(loadedDie(1, 2)),
     goal,
     convert.getclojure(shortcuts),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'javascript wins!');
+), 'javascript');
 
 assert.equal(core.play(
     convert.getsequence(loadedDie(6, 2)),
     goal,
     convert.getclojure(shortcuts),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'clojurescript wins!');
+), 'clojurescript');
 
 // tie in the first round which means that cljs will eventually win the a roll
 // to see who goes first (probably the next time) and then js will win
@@ -130,7 +130,7 @@ assert.equal(core.play(
     goal,
     convert.getclojure(shortcuts),
     convert.getclojure(['javascript', 'clojurescript']),
-), 'javascript wins!');
+), 'javascript');
 
 // three players - second player gets highest score, so third player moves into
 // second position and wins
@@ -139,7 +139,7 @@ assert.equal(core.play(
     goal,
     convert.getclojure(shortcuts),
     convert.getclojure(['typescript', 'clojurescript', 'javascript']),
-), 'javascript wins!');
+), 'javascript');
 
 // this is ladders all the way up - so it should be anybody who is playing fair
 const winningTicket = [
@@ -158,14 +158,14 @@ assert.equal(core.play(
     goal,
     convert.getclojure(shortcuts),
     convert.getclojure(['clojurescript', 'javascript']),
-), 'clojurescript wins!');
+), 'clojurescript');
 
 assert.equal(core.play(
     convert.getclojure([6, 2].concat(riggedRolls)),
     goal,
     convert.getclojure(shortcuts),
     convert.getclojure(['clojurescript', 'javascript']),
-), 'javascript wins!');
+), 'javascript');
 
 // only the player that goes second gets a fair deal.  Everybody else always
 // rolls a 1 which, if you look at the board, will get you stuck this loop:

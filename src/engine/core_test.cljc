@@ -16,25 +16,25 @@
 
 (deftest roll-to-see-who-goes-first
   (is (= (engine.core/play [1 3 6 6 6 6] 12 {} (list "clojure" "clojurescript"))
-         "clojurescript wins!")))
+         "clojurescript")))
 
 (deftest higher-rolls
   (is (= (engine.core/play [1 3 5 6 5 6] 12 {} (list "clojure" "clojurescript"))
-         "clojure wins!")))
+         "clojure")))
 
 (deftest leader-hits-snake
   (is (= (engine.core/play [3 1 6 5 5 5 5 5]
                            12
                            {"6" 1}
                            (list "clojure" "clojurescript"))
-         "clojurescript wins!")))
+         "clojurescript")))
 
 (deftest loser-hits-ladder
   (is (= (engine.core/play [3 1 6 5 5 5 5 5]
                            12
                            {"3" 1 "5" 10}
                            (list "clojure" "clojurescript"))
-         "clojurescript wins!")))
+         "clojurescript")))
 
 ;; this one was failing in the node test - so zeroing in on the problem by
 ;; running the same test here - this will tell me if the params are not being
@@ -47,7 +47,7 @@
              5 ;; js goes to 6
              4]] ;; cljs goes to 8
     (is (= (engine.core/play die 8 {"5" 1} (list "javascript" "clojurescript"))
-           "clojurescript wins!"))))
+           "clojurescript"))))
 
 ;; I thought there might be a problem with roll to see who goes first but it
 ;; was just a problem with remembering what I had evaluated - but I should

@@ -22,12 +22,12 @@ document.getElementById('play-button').onclick = function() {
   }).filter(function(x) {
     return x;
   });
-  alert(
-      engine.core.play(
-          engine.convert.getsequence(die()),
-          board[1],
-          engine.convert.getclojure(board[0]),
-          engine.convert.getclojure(names),
-      ),
+
+  const result = engine.core.play(
+      engine.convert.getsequence(die()),
+      board[1],
+      engine.convert.getclojure(board[0]),
+      engine.convert.getclojure(names),
   );
+  alert(result ? `${result} wins!` : 'no players');
 };
