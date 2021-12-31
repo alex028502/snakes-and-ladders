@@ -15,9 +15,12 @@ export CLASSPATH="$PWD/selenium:$CLASSPATH"
 # so this means that 9 seconds into the tests, the server will shut down
 timeout 10 node_modules/.bin/http-server resources/public/ -p 8080 &
 
+# I don't really need this since I added the server timeout
+# until I want to run the tests without ten seconds of a failure
+# the || should have been there all along but I forgot it
 server_pid=$!
 function clean-up {
-  kill $server_pid
+  kill $server_pid || echo nothing to clean up
 }
 trap clean-up EXIT
 
