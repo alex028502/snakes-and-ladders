@@ -42,7 +42,12 @@ public class Test {
     try {
       Thread.sleep(1000);
       driver.get(url);
-      Thread.sleep(1000);
+      Thread.sleep(500);
+      // load the page again to cache everything after installing sw
+      // needs to be done before the server shuts off
+      // make precache and network first work together to fix
+      driver.navigate().refresh();
+      Thread.sleep(500);
       pressPlay(driver);
       Thread.sleep(1000);
       expectNoPlayersMessage(driver);

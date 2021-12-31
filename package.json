@@ -16,7 +16,7 @@
   "scripts": {
     "watch": "npm run sw-placeholder && make && shadow-cljs watch app",
     "sw-placeholder": "echo '//placeholder' >> resources/public/service-worker.js",
-    "sw": "workbox generateSW workbox-config.js",
+    "sw": "node_modules/.bin/esbuild --bundle src/sw.js --outfile=resources/public/service-worker.js --sourcemap",
     "build": "make && npm run shadow-compile && npm run sw",
     "shadow-compile": "p=resources/public/js && rm -rf $p && shadow-cljs release app && ls $p",
     "nrepl": "shadow-cljs clj-run nrepl.cmdline -- --middleware \"[cider.nrepl/cider-middleware]\"",
