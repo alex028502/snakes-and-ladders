@@ -19,7 +19,7 @@ $(PUBLIC_DIR)/192.png: $(PUBLIC_DIR)/512.png makefile
 	convert $< -resize 192x192 $@
 $(PUBLIC_DIR)/512.png: makefile
 	convert -size 512x512 -background '#d9b835' -pointsize 200 -gravity center -font $F label:100 $@
-$(BUNDLE_PATH): src/index.js $(MAP_PATH) $(TARGET_PATH)
+$(BUNDLE_PATH): src/index.js $(MAP_PATH) $(TARGET_PATH) package-lock.json
 	node_modules/.bin/esbuild --bundle $< --outfile=$@ --sourcemap
 $(MAP_PATH): $(SM) $(TARGET_PATH) $(SOURCE_PATH)
 	node $^ > $@
