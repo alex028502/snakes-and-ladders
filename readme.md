@@ -46,16 +46,19 @@ know anything about where it is running.
 ### Board
 
 The board is configured using a
-[DSL](./src/board.snlbddsl) that I made up.  The [transpiler](./transpiler)
-is written in Flex and Bison, but then [javascript](./transpiler/sm.js) is used
+[DSL](./src/board.snlbddsl) that I made up.  The [transpiler](./snlbddsl)
+is written in Flex and Bison, but then [javascript](./snlbddsl/sm.js) is used
 to extract the source map info.
 
 I really just wanted to try out what I read in this book:
-![Lex and Yacc O'Reilly Book](https://learning.oreilly.com/covers/urn:orm:book:9781565920002/400w/)
+
+<img height="100"
+     alt="Lex and Yacc O'Reilly Book"
+     src="https://learning.oreilly.com/covers/urn:orm:book:9781565920002/400w/" />
 
 The cool part is being able to step through your own language with browser
 dev tools like this:
-![Chrome dev tools showing debugger with my own language](./docs/snlbddsl.png)
+![Chrome dev tools debugging my own language](./docs/debug-snlbddsl.png)
 
 ### Selenium Tests
 
@@ -82,7 +85,7 @@ The Selenium tests only work after the app is compiled.
 
 Since the selenium tests can't really tell us if the game is being played
 fairly, and the snakes and ladders engine tests don't check the real board,
-there is an additional set of [tests](./tests.js) that take the compiled engine,
+there is an additional set of [tests](./test.js) that take the compiled engine,
 the compiled board, and a rigged die, and make sure that a lot of stuff works as
 expected.  This might seem like overkill, but since the users are blindly
 trusting us to give them a fair game, we have to go that extra mile.
