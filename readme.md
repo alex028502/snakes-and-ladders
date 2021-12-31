@@ -12,7 +12,7 @@ All of the source maps are available if you want to know how it works.
 This project is mainly about tooling. Well, is is mainy about automation, and
 saving time, but it is also about tooling, and learning a bit of clojure.
 
-### Snaked and Ladders Engine
+### Snakes and Ladders Engine
 
 The [engine](./src/engine/core.cljc) is written in clojurescript. I tried to
 keep all the functional stuff in clojurescript, and all the messy stuff in js.
@@ -36,7 +36,7 @@ but CI runs it both ways to prove that it is compatible.
 
 ### Javascript Glue
 
-All the gluing together, mutating, generating random numbers.. messy stuff..
+All the glueing together, mutating, generating random numbers.. messy stuff..
 is done [here](src/index.js) in javascript.
 
 [These functions](./src/engine/convert.cljs) convert arrays, objects, and
