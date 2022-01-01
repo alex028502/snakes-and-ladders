@@ -22,9 +22,7 @@
     </style>
   </head>
   <body>
-    <a href="https://commons.wikimedia.org/wiki/File:Game,_board_(AM_1999.143.26-1).jpg">
-      <img alt="snakes and ladders board" src="image.jpg" />
-    </a>
+    <img alt="snakes and ladders board" title="CCBY Auckland War Memorial Museum" src="image.jpg" />
     <br />
     <textarea cols="20" rows="5" id="players" placeholder="players&#10;one per line"></textarea>
     <br />
@@ -32,5 +30,15 @@
     <button type="button" id="reset-button">Reset Form</button>
     <br />
     <script src="./index.js"></script>
+    <div class="footer">
+      <small><a href="./legal.txt">Legal, Privacy, Terms of Use<a></small>
+    </div>
+    <style>
+      /* thanks https://stackoverflow.com/a/46480538 */
+      .footer {
+          bottom: 5px;
+          position: fixed;
+      }
+    </style>
   </body>
 </html>
