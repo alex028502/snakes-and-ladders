@@ -9,10 +9,11 @@ SM=$(TRANSPILER_DIR)/sm.js
 PUBLIC_DIR=resources/public
 BUNDLE_PATH=$(PUBLIC_DIR)/index.js
 F=Liberation-Mono
+IMG=https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Game%2C_board_%28AM_1999.143.26-1%29.jpg/253px-Game%2C_board_%28AM_1999.143.26-1%29.jpg
 
 .PHONY: $(TRANSPILER)
 
-default: $(PUBLIC_DIR)/favicon.ico $(BUNDLE_PATH) $(MAP_PATH) $(PUBLIC_DIR)/192.png $(PUBLIC_DIR)/512.png
+default: $(PUBLIC_DIR)/favicon.ico $(BUNDLE_PATH) $(MAP_PATH) $(PUBLIC_DIR)/192.png $(PUBLIC_DIR)/512.png $(PUBLIC_DIR)/image.jpg
 $(PUBLIC_DIR)/favicon.ico: makefile
 	convert -size 16x16 -background '#476738' -pointsize 12 -gravity center -font $F label:1 $@
 $(PUBLIC_DIR)/192.png: $(PUBLIC_DIR)/512.png makefile
@@ -31,5 +32,11 @@ $(TMP):
 	mkdir -p $@
 $(TRANSPILER):
 	$(MAKE) -C $(TRANSPILER_DIR)
+$(PUBLIC_DIR)/image.jpg: image.jpg
+	cp $< $@
+	touch $@
+image.jpg: makefile
+	wget -O $@ $(IMG)
+	touch $@
 clear:
 	rm -rf $(TMP) $(BUNDLE_PATH)

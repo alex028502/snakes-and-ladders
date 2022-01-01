@@ -14,6 +14,7 @@
     "workbox-cli": "^6.4.2"
   },
   "scripts": {
+    "postinstall": "make image.jpg",
     "watch": "npm run sw-placeholder && make && shadow-cljs watch app",
     "sw-placeholder": "echo '//placeholder' >> resources/public/service-worker.js",
     "sw": "node_modules/.bin/esbuild --bundle src/sw.js --outfile=resources/public/service-worker.js --sourcemap",
