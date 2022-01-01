@@ -48,6 +48,12 @@ public class Test {
       // make precache and network first work together to fix
       driver.navigate().refresh();
       Thread.sleep(500);
+      driver.findElement(By.linkText("Legal, Privacy, Terms of Use")).click();
+      Thread.sleep(200);
+      String legal = driver.findElement(By.tagName("body")).getAttribute("innerHTML");
+      assert legal.contains("$100 bill"): legal;
+      driver.navigate().back();
+      Thread.sleep(200);
       pressPlay(driver);
       Thread.sleep(1000);
       expectNoPlayersMessage(driver);
