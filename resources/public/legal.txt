@@ -1,3 +1,8 @@
+WARNING: If you are looking at this on ios in PWA mode, then you might not be
+able to get back to the main page, because on android you can only get back
+with the back button. Just double click the home button, and stop and restart
+the application when you are done reading.
+
 Terms of Use:
 
 Do you remember that story about it not benig worth Bill Gates's time to pick
