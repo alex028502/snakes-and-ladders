@@ -11,3 +11,5 @@
 /resources/public/service-worker.js*
 /resources/public/workbox*.js*
 /resources/public/*png
+/image.jpg
+resources/public/image.jpg
