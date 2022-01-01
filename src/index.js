@@ -29,5 +29,6 @@ document.getElementById('play-button').onclick = function() {
       engine.convert.getclojure(board[0]),
       engine.convert.getclojure(names),
   );
-  alert(result ? `${result} wins!` : 'no players');
+  const instruction = 'enter the participant names into the white text box';
+  alert(result ? `${result} wins!` : instruction);
 };

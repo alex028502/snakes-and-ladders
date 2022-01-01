@@ -111,7 +111,7 @@ public class Test {
 
   private static void expectNoPlayersMessage(WebDriver driver) {
     Alert alert = driver.switchTo().alert();
-    assert alert.getText().equals("no players"): alert.getText();
+    assert alert.getText().contains("participant"): alert.getText();
     alert.accept();
   }
 
