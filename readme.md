@@ -1,11 +1,15 @@
 # Snakes and Ladders
 
+![snakes and ladders screen on phone](resources/phone-screen.png)
+
 ## TL;DR
 
 Just play and see:
 https://alex028502.github.io/snakes-and-ladders/
 
 All of the source maps are available if you want to know how it works.
+It works offline once you refresh a couple times. Add it to you home screen
+for a full screen experience.
 
 ## Tech
 
