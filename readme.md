@@ -1,6 +1,6 @@
 # Snakes and Ladders
 
-<img height="150"
+<img height="300"
      alt="snakes and ladders screen on phone"
      src="resources/phone-screen.png" />
 <br />
