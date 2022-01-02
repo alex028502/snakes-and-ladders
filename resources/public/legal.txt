@@ -28,7 +28,7 @@ Rules:
 I have made a pretty serious effort to make sure the game is fair, and that the
 game is being played as expected.  However, please do not bet against somebody
 based on that, because if they offer to play this game with you for money, they
-probably know something you don't and I don't.  Please do not use this game in
+probably know something you and I don't.  Please do not use this game in
 any other way in which a flaw in the fairness of the game would be costly in
 terms of money, stress, or anything else. Feel free to review the source code
 in the github repo, or by viewing the source code with dev tools or looking at
