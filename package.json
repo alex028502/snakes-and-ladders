@@ -25,7 +25,7 @@
     "test-core-with-node": "shadow-cljs compile test",
     "test-core-with-jvm": "shadow-cljs clj-run kaocha.runner",
     "format": "npm run format-cljs -- check && npm run format-js",
-    "format-cljs": "shadow-cljs run cljfmt.main --remove-multiple-non-indenting-spaces",
+    "format-cljs": "shadow-cljs run cljfmt.main --remove-multiple-non-indenting-spaces check",
     "format-js": "eslint .*.js *.js src/*.js snlbddsl/*.js"
   }
 }
