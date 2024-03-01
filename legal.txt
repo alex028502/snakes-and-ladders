@@ -1,0 +1,60 @@
+WARNING: If you are looking at this on ios in PWA mode, then you might not be
+able to get back to the main page, because on android you can only get back
+with the back button. Just double click the home button, and stop and restart
+the application when you are done reading.
+
+Terms of Use:
+
+Do you remember that story about it not benig worth Bill Gates's time to pick
+up a $100 bill from the ground? Using that calculation, if it is not worth your
+time to pick up a $20 bill or equivalent, then to the extent that it is
+possible and/or legal to make a paid service on the internet that does not
+actually prevent you from consuming the service without paying, and only
+mentioning in the small print that the service is not free, the price to play
+this game is one quarter of the money you save by playing this.. meaning for
+each game you play, take the amount of time an analog snakes and ladders game
+would take you, and calculate how much that time is worth using the same
+calculation that was used to determine whether it is worth it for Bill Gates
+to pick up the $100 bill, divide by four, and send me that much money. I
+have no tracking on usage of this website. It is all run in the client. So I
+am going to have to hope that anybody who saves piles of money with this game
+is honest.
+
+If you are poor enough that it is still worth your while to pick up a $20 bill
+or equivalent, then this game is completely free (as in beer).
+
+Rules:
+
+I have made a pretty serious effort to make sure the game is fair, and that the
+game is being played as expected.  However, please do not bet against somebody
+based on that, because if they offer to play this game with you for money, they
+probably know something you and I don't.  Please do not use this game in
+any other way in which a flaw in the fairness of the game would be costly in
+terms of money, stress, or anything else. Feel free to review the source code
+in the github repo, or by viewing the source code with dev tools or looking at
+the github repo, and decide for yourself if the game is fair and authentic for
+your purpose, and please let me know if there is any problem.
+
+When rolling to see who goes first, if there is a tie, all players re-roll, not
+just the ones involved in the tie. So if two players roll a 5, and one player
+rolls a 3, all three players re-roll, and could end up playing first. After the
+winner of the initial roll starts, everybody else plays in the order they were
+listed in the text box, so if the second player listed in the text box wins the
+rolls to see who goes first, the third player listed goes second.
+
+You do not have to win with an exact number. I read on wikipedia that that rule
+is not universal, and it was easier to implement without that rule, so I left
+it out.  If you are on square 99, and then roll a six, you win.
+
+Privacy:
+
+I'm not saving any information at all. This site doesn't connect to any outside
+site, so I have no way of tracking anything. Github, who host the static files,
+are probably tracking your visits somehow.
+
+Image:
+
+The board comes from here:
+https://commons.wikimedia.org/wiki/File:Game,_board_(AM_1999.143.26-1).jpg
+CCBY
+Thanks to the Auckland War Memorial Museum

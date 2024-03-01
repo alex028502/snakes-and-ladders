@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico?">
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snakes and Ladders</title>
+    <script src="./js/main.js"></script>
+    <script>
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    </script>
+    <style>
+      body {
+          background-color: #3c579e;
+      }
+      /* button { */
+      /*     background-color: #476738; */
+      /* } */
+    </style>
+  </head>
+  <body>
+    <img alt="snakes and ladders board" title="CCBY Auckland War Memorial Museum" src="image.jpg" />
+    <br />
+    <textarea cols="20" rows="5" id="players" placeholder="players&#10;one per line"></textarea>
+    <br />
+    <button type="button" id="play-button">Play!</button>
+    <button type="button" id="reset-button">Reset Form</button>
+    <br />
+    <script src="./index.js"></script>
+    <div class="footer">
+      <small><a href="./legal.txt">Legal, Privacy, Terms of Use<a></small>
+    </div>
+    <style>
+      /* thanks https://stackoverflow.com/a/46480538 */
+      .footer {
+          bottom: 5px;
+          position: fixed;
+      }
+    </style>
+  </body>
+</html>
