@@ -43,7 +43,7 @@ jobs:
     - name: take a look at hosts file
       run: cat /etc/hosts
     - name: selenium test
-      run: TEST_DOMAIN=$(cat /etc/hosts | grep internal | head -n1 | awk '{ print $1 }') ./test.sh
+      run: TEST_DOMAIN=$(cat /etc/hosts | grep fv- | head -n1 | awk '{ print $1 }') ./test.sh
       env:
         SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
     - name: publish
